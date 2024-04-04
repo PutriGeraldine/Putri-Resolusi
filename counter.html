@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <title>State</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+        
+    <script type="text/babel">
+            const container = document.getElementById('root');
+            const root = ReactDOM.createRoot(container);
+
+            function Header({name}){
+                return(<h1> {name ? name : 'Putri'} Belajar Komponen Utama React💕</h1>);
+            }
+
+            function HomePage(){
+                const students = ['Wynda Hutapea', 'Martha LumbanTobing', 'Graine LumbanTobing', 'Yohana LumbanTobing'];
+                const [likes, setLikes] = React.useState(0);
+                const [count, setCount] = React.useState(0);
+
+                function handleClick(){
+                    setLikes(likes + 1);
+                }
+
+                function incrementCount(){
+                    setCount(count + 1);
+                }
+
+                function decrementCount(){
+                    setCount(count - 1);
+                }
+
+                function resetCount(){
+                    setCount(0);
+                }
+
+                return(
+                    <>
+                        <Header name="Geraldine" />
+                        <ul>
+                            {
+                                students.map((student) => (
+                                    <li key={student}>{student}</li>
+                                ))
+                            }
+                        </ul>
+
+                        <button onClick={handleClick}>Like({likes})</button>
+
+                        <div>
+                            <p>Counter: {count}</p>
+                            <button onClick={incrementCount}>+</button>
+                            <button onClick={decrementCount}>-</button>
+                            <button onClick={resetCount}>Reset</button>
+                        </div>
+                    </>
+                );
+            }
+            root.render(<HomePage />);
+    </script>
+</body>
+</html>
